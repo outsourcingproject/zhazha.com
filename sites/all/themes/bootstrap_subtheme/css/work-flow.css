@@ -1,0 +1,156 @@
+ol,
+ul {
+  list-style: none;
+  padding: 0px;
+}
+.work-detail {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1000;
+}
+.work-detail .work-detail-mask {
+  background-color: #202020;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.work-detail .work-show {
+  margin-right: 340px;
+  color: #fff;
+}
+.work-detail .work-show .work-show-wrap {
+  padding: 0 126px;
+  overflow: hidden;
+}
+.work-detail .work-show .work-show-inner {
+  position: relative;
+}
+.work-detail .work-show .work-show-top {
+  margin-bottom: 5px;
+}
+.work-detail .work-show .btn-back {
+  width: 64px;
+  height: 64px;
+  background-color: #333;
+  position: absolute;
+  top: 15px;
+  left: -110px;
+  transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+}
+.work-detail .work-show .work-show-bd {
+  position: relative;
+}
+.work-detail .work-show .mod-operate .operate-list-item {
+  float: left;
+  text-align: center;
+  margin: 0 10px 0 0;
+  margin-right: 20px;
+}
+.work-detail .work-list {
+  overflow: hidden;
+}
+.work-detail .work-list li {
+  margin-bottom: 20px;
+  overflow: hidden;
+  text-align: center;
+}
+.work-detail .work-list li img {
+  width: 100%;
+  height: 100%;
+}
+.work-detail .work-author-info {
+  position: fixed;
+  right: 0;
+  top: 0px;
+  width: 340px;
+  color: #404040;
+  background-color: #fff;
+}
+.work-detail .work-author-info .work-actions .action-item {
+  width: 113px;
+  border-left: 1px solid #e2e2e6;
+}
+.work-detail .mod-actions {
+  border-top: 1px solid #e2e2e6;
+  border-bottom: 1px solid #e2e2e6;
+}
+.work-detail .mod-actions .action-item {
+  border-left: 1px solid #e2e2e6;
+  text-align: center;
+  height: 62px;
+  line-height: 62px;
+  width: 170px;
+  float: left;
+  color: #404040;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+}
+.work-detail .work-author .author-main {
+  padding: 0 0 0 88px;
+  position: relative;
+  height: 95px;
+}
+.work-detail .work-author .author-avatar {
+  position: absolute;
+  top: 20px;
+  left: 17px;
+}
+.work-detail .work-author .avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.work-detail .work-author .author-info {
+  padding-top: 25px;
+}
+.work-detail .work-author .author-info .author-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #404040;
+}
+.work-detail .work-author .author-info .time {
+  color: #b7b7b7;
+  font-size: 14px;
+  font-family: "Arial";
+}
+.work-detail .work-intro h4 {
+  font-size: 14px;
+  padding: 20px 0;
+}
+.work-detail .work-intro .work-intro-detail .intro-detail-main {
+  padding-left: 17px;
+}
+.work-detail .work-intro .work-intro-detail .detail-txt {
+  line-height: 1.5;
+  width: 298px;
+  margin-bottom: 20px;
+}
+.work-detail .work-intro .work-intro-detail .work-tags {
+  margin-bottom: 25px;
+  margin-right: 10px;
+}
+.work-detail .work-intro .work-intro-detail .tags-list {
+  margin-right: -7px;
+}
+.work-detail .work-intro .work-intro-detail .tags-list li {
+  float: left;
+  margin-right: 7px;
+  _display: inline;
+  margin-bottom: 5px;
+}
+.work-detail .work-intro .mod-actions {
+  border-top: 1px solid #e2e2e6;
+  border-bottom: 1px solid #e2e2e6;
+}

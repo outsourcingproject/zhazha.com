@@ -1,0 +1,26 @@
+# Chinese, Simplified translation of Zen (7.x-5.5)
+# Copyright (c) 2015 by the Chinese, Simplified translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Zen (7.x-5.5)\n"
+"POT-Creation-Date: 2015-07-13 19:57+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Chinese, Simplified\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Home"
+msgstr "首页"
+msgid "Layout settings"
+msgstr "布局设置"
+msgid "Columns: 1"
+msgstr "栏：1"
+msgid "Classes for the “@region” region"
+msgstr "用于“@region”区域的类"
+msgid ""
+"CSS class (or classes) to apply to the @region region in the layout. "
+"This may be blank."
+msgstr "用于布局中“@region”区域的CSS类，可以为空。"

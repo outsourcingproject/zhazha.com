@@ -1,0 +1,26 @@
+# Chinese, Simplified translation of Block Title Link (7.x-1.5)
+# Copyright (c) 2015 by the Chinese, Simplified translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Block Title Link (7.x-1.5)\n"
+"POT-Creation-Date: 2015-08-20 06:51+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Chinese, Simplified\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Title Path"
+msgstr "标题的路径"
+msgid "Block Title Link"
+msgstr "区块标题链接"
+msgid "Allows assigning links to Block Titles"
+msgstr "允许指定链接至区块标题"
+msgid "Block Title Link Settings"
+msgstr "区块标题链接的设置"
+msgid "The title path appears to contain an invalid URL."
+msgstr "标题的路径似乎包含了一个非法的URL。"
+msgid "Display Link"
+msgstr "显示链接"
