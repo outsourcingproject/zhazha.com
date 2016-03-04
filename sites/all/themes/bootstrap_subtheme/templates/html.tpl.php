@@ -50,6 +50,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="wb:webmaster" content="f43a26c1414fac16" />
+  <meta property="qc:admins" content="1550366304201607" />
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
