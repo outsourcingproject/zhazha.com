@@ -66,7 +66,6 @@
             <li
               class="icon-time"><?php print date('Y-m-d', $node_created) ?></li>
             <li class="icon-heart"><?php print $bookmarksNum ?></li>
-            <li class="icon-download-alt"><?php print $bookmarksNum ?></li>
             <li class="icon-eye-open"><?php print $see_times ?></li>
             <li class="icon-comment"><?php print $comment_count ?></li>
           </ul>
