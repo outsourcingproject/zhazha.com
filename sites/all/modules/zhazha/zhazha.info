@@ -1,0 +1,4 @@
+name = zhazha custom
+description = module for zhazha site custom
+package = custom
+core = 7.x

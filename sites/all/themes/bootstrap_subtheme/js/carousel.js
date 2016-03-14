@@ -42,7 +42,7 @@
                     bottom: '10px',
                     fontSize: '10px',
                     background: "#aaa",
-                    border: "1px solid #ffffff",
+                    border: "1px solid #ccc",
                     borderRadius:"999px",
                     color: "#666666",
                     textAlign: 'center',

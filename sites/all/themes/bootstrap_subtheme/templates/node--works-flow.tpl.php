@@ -97,9 +97,15 @@ $user = user_load($uid);
 
 $images=$content['field_image']['#object']->field_image['und'];
 
-$imagePath = file_create_url($images[0]['uri']);
+$description='';
+if(isset($content['field_image']['#object']->field_description['und'][0]['safe_value'])){
+  $description=$content['field_image']['#object']->field_description['und'][0]['safe_value'];
+}
 
-$encodedImg = urlencode($imagePath);
+$user_name=$user->name;
+$user_avatar=file_create_url($user->picture->uri);
+//$imagePath = file_create_url($images[0]['uri']);
+//$encodedImg = urlencode($imagePath);
 
 $node_title = $content['field_image']['#object']->title;
 
@@ -119,25 +125,25 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
       <div class="work-show-hd">
         <div class="work-show-wrap">
           <div class="work-show-inner">
-            <div class="work-show-top"><h3>脸谱</h3>
+            <div class="work-show-top"><h3><?php print $node_title?></h3>
               <div class="mod-operate mod-operate-padding">
                 <ul class="operate-list clearfix j-operate-59796">
                   <li class="operate-list-item operate-list-item-view">
 			<span class="operate-con" title="查看">
 				<i class="icon-eye-open"></i>
-				<span>93</span>
+				<span><?php print $see_times?></span>
 			</span>
                   </li>
                   <li class="operate-list-item">
 			<span class="operate-con" title="赞">
 				<i class="icon-heart"></i>
-				<span class="j-favor-nums">24</span>
+				<span class="j-favor-nums"><?php print $praiseNum?></span>
 			</span>
                   </li>
                   <li class="operate-list-item">
 			<span class="operate-con" title="评论">
 				<i class="icon-comment"></i>
-				<span class="j-comment-nums">0</span>
+				<span class="j-comment-nums"><?php print $comment_count?></span>
 			</span>
                   </li>
                   <li class="operate-list-item">
@@ -148,8 +154,8 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
                   </li>
                 </ul>
               </div></div>
-            <a href="#" class="btn-back">
-              <i class="mod-icon mod-icon-trig-l"></i>
+            <a href="javascript:window.history.go(-1);" class="btn-back">
+              <i class="icon-3x icon-angle-left"></i>
             </a>
           </div>
         </div>
@@ -157,23 +163,16 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
       <div class="work-show-bd j-scroll j-layer-img">
 
         <div class="work-show-wrap j-scroll-viewport" >
-          <div class="work-show-inner j-scroll-overview" style="top: -106px;">
-            <div class="work-list j-layer-img-list ">	<ul>		<li style="width:646px;height:941.14125px">
-                  <img src="http://img.ycg.qq.com/201832/0/d8adbac3-cea8-43b4-8f7c-d486cb887f9d/preview" style="" data-img="http://img.ycg.qq.com/201832/0/d8adbac3-cea8-43b4-8f7c-d486cb887f9d/preview" alt="">
-
-                </li>		<li style="width:646px;height:941.14125px">
-                  <img src="http://img.ycg.qq.com/201832/0/a826f10c-520b-4b55-bfd7-85abeafd08c7/preview" style="" data-img="http://img.ycg.qq.com/201832/0/a826f10c-520b-4b55-bfd7-85abeafd08c7/preview" alt="">
-
-                </li>		<li style="width:646px;height:430.6666666666667px">
-                  <img src="http://img.ycg.qq.com/201832/0/4b5d3107-1e98-4841-bc60-127e142df6ec/preview" style="" data-img="http://img.ycg.qq.com/201832/0/4b5d3107-1e98-4841-bc60-127e142df6ec/preview" alt="">
-
-                </li>		<li style="width:646px;height:430.6666666666667px">
-                  <img src="http://img.ycg.qq.com/201832/0/577fcda1-fc1c-4377-a604-b2e85b388ca7/preview" style="" data-img="http://img.ycg.qq.com/201832/0/577fcda1-fc1c-4377-a604-b2e85b388ca7/preview" alt="">
-
-                </li>		<li style="width:646px;height:430.6666666666667px">
-                  <img src="http://img.ycg.qq.com/201832/0/55f16c5e-0dd5-42d5-8a5e-855a98d47b58/preview" style="" data-img="http://img.ycg.qq.com/201832/0/55f16c5e-0dd5-42d5-8a5e-855a98d47b58/preview" alt="">
-
-                </li>	</ul></div>
+          <div class="work-show-inner j-scroll-overview">
+            <div class="work-list j-layer-img-list ">
+              <ul>
+                <?php foreach($images as $image):?>
+                <li >
+                  <img src="<?php print file_create_url($image['uri']) ?>">
+                </li>
+                <?php endforeach;?>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -181,13 +180,13 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
     <div class="work-author-info j-viewer-side" >
       <div class="work-author j-work-author">
         <div class="author-main"><div class="author-avatar">
-            <a class="avatar" target="_blank" href="/homepage/575089">
-              <img class="avatar-img" src="http://qlogo4.store.qq.com/qzone/542615761/542615761/100" alt="">
+            <a class="avatar" target="_blank" href="/user/<?php print $uid?>">
+              <img class="avatar-img" src="<?php print $user_avatar?>" alt="">
             </a>
           </div>
           <div class="author-info">
-            <a target="_blank" href="/homepage/575089" class="author-name">大猫</a>
-            <p class="time">2016-2-27 11:13:36</p>
+            <a target="_blank" href="/user/<?php print $uid?>" class="author-name"><?php print $user_name?></a>
+            <p class="time"><?php print date('Y-m-d h:i:s', $node_created)?></p>
           </div></div>
         <div class="mod-actions author-actions clearfix j-info-area">	<a href="javascript:void(0);" class="action-item j-focus">
             <i class="icon-plus-sign"></i> 加关注
@@ -198,7 +197,7 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
         <div class="work-intro-detail">
           <div class="intro-detail-main"><h4>作品详情</h4>
             <div class="detail-txt">
-              <p>呃····如你所见····就是个脸谱····</p>
+              <p><?php print $description?></p>
             </div>
           </div>
           <div class="mod-actions work-actions clearfix">

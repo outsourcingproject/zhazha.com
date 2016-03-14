@@ -223,7 +223,7 @@ if(empty($OPENSHIFT_MYSQL_DB_HOST)){
             'username' => 'root',
             'password' => '888888',
             'host' => 'localhost',
-            'port' => '',
+            'port' => '3306',
             'driver' => 'mysql',
             'prefix' => '',
           ),

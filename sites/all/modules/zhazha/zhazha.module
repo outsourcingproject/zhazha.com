@@ -1,0 +1,38 @@
+<?php
+
+function zhazha_block_info()
+{
+  $blocks['user_detail_info'] = array(
+    'info' => t('user detail information'),
+    'status' => TRUE,
+//    'visibility' => BLOCK_VISIBILITY_LISTED,
+//    'pages' => 'user/*',
+    'cache' => DRUPAL_CACHE_PER_USER,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function zhazha_block_view($delta = '')
+{
+  switch ($delta) {
+    case 'user_detail_info': {
+      $block['subject'] = t('user detail information');
+      $block['content'] = 'adfsadfdasfdsaf';
+      return $block;
+    }
+    default: {
+      break;
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function zhazha_menu_alter(&$items)
+{
+  $items['node/%node/track']['access callback'] = FALSE;
+}

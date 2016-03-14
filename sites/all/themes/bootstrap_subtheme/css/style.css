@@ -1022,7 +1022,7 @@ h6,
 }
 .work-list .work-list-item .work-list-item-info .work-info .author-info .author-name {
   font-size: 14px;
-  line-height: 42px;
+  line-height: 38px;
   font-weight: bold;
   display: inline-block;
   max-width: 150px;
@@ -1043,7 +1043,7 @@ h6,
   float: left;
   text-align: center;
   margin: 0;
-  line-height: 42px;
+  line-height: 38px;
   border-right: 1px solid #eaeaed;
   color: #404040;
 }
