@@ -81,46 +81,49 @@
  */
 ?>
 <?php
-$nid = $content['body']['#object']->nid;
 $flagarr = flag_get_counts('node', $nid);
-$bookmarksNum = 0;
+$shareNum = 0;
 $praiseNum = 0;
 
-if (isset($flagarr['bookmarks'])) {
-  $bookmarksNum = $flagarr['bookmarks'];
+if (isset($flagarr['share'])) {
+  $shareNum = $flagarr['share'];
 }
 if (isset($flagarr['praise'])) {
   $praiseNum = $flagarr['praise'];
 }
 
-
-$imagePath = file_create_url($content['body']['#object']->field_image['und'][0]['uri']);
+if(isset($node->field_image['und'][0]['uri'])){
+  $hasImg=TRUE;
+}else{
+  $hasImg=FALSE;
+}
+$imagePath = file_create_url($node->field_image['und'][0]['uri']);
 $encodedImg = urlencode($imagePath);
 
-$node_title = $content['body']['#object']->title;
+$node_title = $node->title;
 
-if (isset($content['body']['#object']->body['und'][0]['safe_value'])) {
-  $node_body = $content['body']['#object']->body['und'][0]['safe_value'];
+if (isset($node->body['und'][0]['safe_value'])) {
+  $node_body = $node->body['und'][0]['safe_value'];
 }
 else {
   $node_body = '';
 }
 
-$url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . (drupal_get_path_alias(current_path()));
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $node_url;
 $encodedURL = urlencode($url);
 
-if (isset($content['body']['#object']->field_attachment['und'])) {
-  $files = $content['body']['#object']->field_attachment['und'];
+if (isset($node->field_attachment['und'])) {
+  $files = $node->field_attachment['und'];
 }
 
-if (isset($content['body']['#object']->field_download_link['und'])) {
-  $download_link = $content['body']['#object']->field_download_link['und'][0]['value'];
+if (isset($node->field_download_link['und'])) {
+  $download_link = $node->field_download_link['und'][0]['value'];
 }
 
-$used_software = $content['body']['#object']->field_used_software['und'][0]['value'];
-$duration = $content['body']['#object']->field_duration['und'][0]['value'];
-$used_language = $content['body']['#object']->field_language['und'][0]['value'];
-$used_file_size = $content['body']['#object']->field_file_size['und'][0]['value'];
+$used_software = $node->field_used_software['und'][0]['value'];
+$duration = $node->field_duration['und'][0]['value'];
+$used_language = $node->field_language['und'][0]['value'];
+$used_file_size = $node->field_file_size['und'][0]['value'];
 
 $see_times = intval($variables['content']['links']['statistics']['#links']['statistics_counter']['title']);
 
@@ -154,9 +157,10 @@ $see_times = intval($variables['content']['links']['statistics']['#links']['stat
       <li class="active last"><?php print $node_title?></li>
     </ol>
 
-
+    <?php if($hasImg):?>
     <img src="<?php print $imagePath ?>" alt=""
          class="tutorials-download-content-img">
+    <?php endif;?>
     <ul class="tutorials-download-metadata list-inline">
       <li>时长 : <?php print $duration?></li>
       <li>使用软件 : <?php print $used_software?></li>
@@ -168,6 +172,9 @@ $see_times = intval($variables['content']['links']['statistics']['#links']['stat
     <div class="tutorials-download-content"><?php print $node_body ?></div>
     <div class="tutorials-download-content-footer">
       <ul id="share-list" class="tutorials-download-share list-inline">
+        <li>
+          <?php print flag_create_link('praise',$nid)?>
+        </li>
         <li>
           <a
             href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php print $encodedURL ?>&title=<?php print $node_title ?>&pics=<?php print $encodedImg ?>&summary=<?php print get_summary($node_body) ?>"

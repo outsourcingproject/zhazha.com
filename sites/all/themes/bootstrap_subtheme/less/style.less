@@ -9,9 +9,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Microsoft YaHei", "MicrosoftJhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.view-carousel{
+.view-carousel {
   margin-top: -31px;
 }
+
 .navbar-default .navbar-nav > li > a {
   font-size: 18px;
   font-weight: bold;
@@ -51,9 +52,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 
 }
-.block-search{
+
+.block-search {
   margin: 0 0 10px 0;
 }
+
 .navbar-nav:nth-child(1) {
   margin: 0px 20px;
   li {
@@ -90,13 +93,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
   }
 }
-.breadcrumb{
+
+.breadcrumb {
   display: none;
-  &.new{
+  &.new {
     display: block;
     background-color: transparent;
   }
 }
+
 .excellent-video-data {
   background-color: #f1f1f1;
   padding-left: 20px;
@@ -295,7 +300,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         float: right;
       }
     }
-
   }
   margin-bottom: 20px;
 }
@@ -428,8 +432,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-right: 5px;
   }
 }
-.page-works-flow{
-  #block-views-works-flow-classify-list-block{
+
+.page-works-flow {
+  #block-views-works-flow-classify-list-block {
     display: none;
   }
 }
@@ -675,7 +680,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   overflow: hidden;
   margin: 0px auto;
   padding: 20px 0px;
-  width: 400px;
+  width: 500px;
 }
 
 .tutorials-download-btn {
@@ -743,4 +748,59 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #user-pass, #user-login, #user-register-form {
   width: 400px;
   margin: 10px auto;
+}
+
+.flag-praise-link:hover {
+  text-decoration: none;
+}
+.flag-follow-link:hover{
+  text-decoration: none;
+}
+
+.flag-praise-wrapper {
+  border-radius: 100px;
+  background-color: #fc575e;
+  width: 54px;
+  height: 54px;
+  position: relative;
+
+  .flag-praise-link {
+    position: absolute;
+    top: 10px;
+    left: 17px;
+
+    text-decoration: none;
+
+    &.unflag-action {
+      color: #aa0000;
+    }
+    &.flag-action {
+      color: #ffffff;
+    }
+  }
+  .flag-throbber {
+    position: absolute;
+    top: 10px;
+    left: 17px;
+    color: #ffffff;
+  }
+  .flag-praise-times {
+    position: absolute;
+    top: 32px;
+    left: 0px;
+    right: 0px;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+.works-flow-flag-praise-wrapper{
+  .flag-praise-link {
+    text-decoration: none;
+
+    &.unflag-action {
+      color: #aa0000 !important;
+    }
+  }
 }

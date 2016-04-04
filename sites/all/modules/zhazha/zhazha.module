@@ -3,12 +3,13 @@
 function zhazha_block_info()
 {
   $blocks['user_detail_info'] = array(
-    'info' => t('user detail information'),
-    'status' => TRUE,
-//    'visibility' => BLOCK_VISIBILITY_LISTED,
-//    'pages' => 'user/*',
+    'info' =>'user detail information',
+    'status' => FALSE,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'user/*',
     'cache' => DRUPAL_CACHE_PER_USER,
   );
+
   return $blocks;
 }
 
@@ -19,7 +20,7 @@ function zhazha_block_view($delta = '')
 {
   switch ($delta) {
     case 'user_detail_info': {
-      $block['subject'] = t('user detail information');
+      $block['subject'] = 'sdafsad';
       $block['content'] = 'adfsadfdasfdsaf';
       return $block;
     }
@@ -34,5 +35,29 @@ function zhazha_block_view($delta = '')
  */
 function zhazha_menu_alter(&$items)
 {
+  dpm($items);
+
+  $items['user/%user/shortcuts']['access callback'] = FALSE;
+
+  $items['user/%user/track/navigation']['access callback'] = FALSE;
+
   $items['node/%node/track']['access callback'] = FALSE;
+
+  $items['user/%user']['access callback'] = FALSE;
+
+  $items['user/%user/edit']['access callback'] = FALSE;
+
+  $items['user']['page callback'] = 'zhazha_user_page';
+}
+
+function zhazha_user_page(){
+
+  global $user;
+  if ($user->uid) {
+    menu_set_active_item('user/' . $user->uid.'/works');
+    return menu_execute_active_handler(NULL, FALSE);
+  }
+  else {
+    return drupal_get_form('user_login');
+  }
 }

@@ -1168,7 +1168,7 @@ h6,
   overflow: hidden;
   margin: 0px auto;
   padding: 20px 0px;
-  width: 400px;
+  width: 500px;
 }
 .tutorials-download-btn {
   display: block;
@@ -1215,4 +1215,50 @@ h6,
 #user-register-form {
   width: 400px;
   margin: 10px auto;
+}
+.flag-praise-link:hover {
+  text-decoration: none;
+}
+.flag-follow-link:hover {
+  text-decoration: none;
+}
+.flag-praise-wrapper {
+  border-radius: 100px;
+  background-color: #fc575e;
+  width: 54px;
+  height: 54px;
+  position: relative;
+}
+.flag-praise-wrapper .flag-praise-link {
+  position: absolute;
+  top: 10px;
+  left: 17px;
+  text-decoration: none;
+}
+.flag-praise-wrapper .flag-praise-link.unflag-action {
+  color: #aa0000;
+}
+.flag-praise-wrapper .flag-praise-link.flag-action {
+  color: #ffffff;
+}
+.flag-praise-wrapper .flag-throbber {
+  position: absolute;
+  top: 10px;
+  left: 17px;
+  color: #ffffff;
+}
+.flag-praise-wrapper .flag-praise-times {
+  position: absolute;
+  top: 32px;
+  left: 0px;
+  right: 0px;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+}
+.works-flow-flag-praise-wrapper .flag-praise-link {
+  text-decoration: none;
+}
+.works-flow-flag-praise-wrapper .flag-praise-link.unflag-action {
+  color: #aa0000 !important;
 }

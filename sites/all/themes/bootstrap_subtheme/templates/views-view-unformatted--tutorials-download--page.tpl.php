@@ -20,11 +20,9 @@
 
   <?php
   $flagarr = flag_get_counts('node', $v->nid);
-  $bookmarksNum = 0;
+
   $praiseNum = 0;
 
-  if (isset($flagarr['bookmarks']))
-    $bookmarksNum = $flagarr['bookmarks'];
   if (isset($flagarr['praise']))
     $praiseNum = $flagarr['praise'];
 
@@ -64,8 +62,8 @@
         <li><a href="/">渣渣网</a></li>
 
         <li class="icon-time"><?php print date('Y-m-d', $node_created) ?></li>
-        <li class="icon-heart"><?php print $bookmarksNum ?></li>
-        <li class="icon-download-alt"><?php print $bookmarksNum ?></li>
+        <li class="icon-heart"><?php print $praiseNum ?></li>
+        <li class="icon-download-alt"><?php print 0 ?></li>
         <li class="icon-eye-open"><?php print $see_times ?></li>
         <li class="icon-comment"><?php print $comment_count?></li>
       </ul>

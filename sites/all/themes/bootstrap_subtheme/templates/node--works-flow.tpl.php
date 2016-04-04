@@ -81,25 +81,23 @@
  */
 ?>
 <?php
-$nid = $content['field_image']['#object']->nid;
 $flagarr = flag_get_counts('node', $nid);
-$bookmarksNum = 0;
+$shareNum = 0;
 $praiseNum = 0;
 
-if (isset($flagarr['bookmarks'])) {
-  $bookmarksNum = $flagarr['bookmarks'];
+if (isset($flagarr['share'])) {
+  $shareNum = $flagarr['share'];
 }
 if (isset($flagarr['praise'])) {
   $praiseNum = $flagarr['praise'];
 }
-$uid = $content['field_image']['#object']->uid;
 $user = user_load($uid);
 
-$images=$content['field_image']['#object']->field_image['und'];
+$images=$node->field_image['und'];
 
 $description='';
-if(isset($content['field_image']['#object']->field_description['und'][0]['safe_value'])){
-  $description=$content['field_image']['#object']->field_description['und'][0]['safe_value'];
+if(isset($node->field_description['und'][0]['safe_value'])){
+  $description=$node->field_description['und'][0]['safe_value'];
 }
 
 $user_name=$user->name;
@@ -107,14 +105,14 @@ $user_avatar=file_create_url($user->picture->uri);
 //$imagePath = file_create_url($images[0]['uri']);
 //$encodedImg = urlencode($imagePath);
 
-$node_title = $content['field_image']['#object']->title;
+$node_title = $node->title;
 
-$node_created = $content['field_image']['#object']->created;
+$node_created = $node->created;
 
-$url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . (drupal_get_path_alias(current_path()));
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $node_url;
 $encodedURL = urlencode($url);
 
-$comment_count=$content['field_image']['#object']->comment_count;
+$comment_count=$node->comment_count;
 $see_times=intval($variables['content']['links']['statistics']['#links']['statistics_counter']['title']);
 ?>
 
@@ -188,11 +186,10 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
             <a target="_blank" href="/user/<?php print $uid?>" class="author-name"><?php print $user_name?></a>
             <p class="time"><?php print date('Y-m-d h:i:s', $node_created)?></p>
           </div></div>
-        <div class="mod-actions author-actions clearfix j-info-area">	<a href="javascript:void(0);" class="action-item j-focus">
-            <i class="icon-plus-sign"></i> 加关注
-          </a>	<a href="javascript:void(0);" class="action-item action-message j-message func-disable">
-            <i class="icon-envelope"></i> 发私信
-          </a>                    </div></div>
+        <div class="mod-actions author-actions clearfix j-info-area">
+          <?php print flag_create_link('follow',$uid);?>
+        </div>
+      </div>
       <div class="work-intro j-work-intro">
         <div class="work-intro-detail">
           <div class="intro-detail-main"><h4>作品详情</h4>
@@ -201,7 +198,8 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
             </div>
           </div>
           <div class="mod-actions work-actions clearfix">
-            <a href="javascript:void(0);" class="action-item action-praise j-praise">		<i class="icon-heart"></i><span> 赞</span>	</a>
+
+            <?php print flag_create_link('praise',$nid)?>
             <a href="javascript:void(0);" class="action-item j-comment-op"><i class="icon-comment"></i> 评论</a>
             <a href="javascript:void(0);" class="action-item j-share"><i class="icon-share"></i> 分享</a>
           </div>

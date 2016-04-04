@@ -16,11 +16,8 @@
 
     <?php
     $flagarr = flag_get_counts('node', $v->nid);
-    $bookmarksNum = 0;
     $praiseNum = 0;
 
-    if (isset($flagarr['bookmarks']))
-      $bookmarksNum = $flagarr['bookmarks'];
     if (isset($flagarr['praise']))
       $praiseNum = $flagarr['praise'];
 

@@ -81,40 +81,40 @@
  */
 ?>
 <?php
-$nid = $content['body']['#object']->nid;
+
 $flagarr = flag_get_counts('node', $nid);
-$bookmarksNum = 0;
+
+$shareNum = 0;
 $praiseNum = 0;
 
-if (isset($flagarr['bookmarks'])) {
-  $bookmarksNum = $flagarr['bookmarks'];
+if (isset($flagarr['share'])) {
+  $shareNum = $flagarr['share'];
 }
 if (isset($flagarr['praise'])) {
   $praiseNum = $flagarr['praise'];
 }
-$uid = $content['body']['#object']->uid;
 $user = user_load($uid);
 
-$imagePath = file_create_url($content['body']['#object']->field_image['und'][0]['uri']);
+$imagePath = file_create_url($node->field_image['und'][0]['uri']);
 $encodedImg = urlencode($imagePath);
 
-$node_title = $content['body']['#object']->title;
+$node_title = $node->title;
 
-if (isset($content['body']['#object']->body['und'][0]['safe_value'])) {
-  $node_body = $content['body']['#object']->body['und'][0]['safe_value'];
+if (isset($node->body['und'][0]['safe_value'])) {
+  $node_body = $node->body['und'][0]['safe_value'];
 }
 else {
   $node_body = '';
 }
-$node_created = $content['body']['#object']->created;
-$url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . (drupal_get_path_alias(current_path()));
+$node_created = $node->created;
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $node_url;
 $encodedURL = urlencode($url);
-if (isset($content['body']['#object']->field_attachment['und'])) {
-  $files = $content['body']['#object']->field_attachment['und'];
+if (isset($node->field_attachment['und'])) {
+  $files = $node->field_attachment['und'];
 }
 
 $summary = get_summary($node_body);
-$comment_count=$content['body']['#object']->comment_count;
+$comment_count=$node->comment_count;
 $see_times=intval($variables['content']['links']['statistics']['#links']['statistics_counter']['title']);
 ?>
 
@@ -137,7 +137,7 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
       <ul class="list-unstyled list-inline">
         <li class="icon-user"><?php print $user->name ?></li>
         <li class="icon-time"><?php print date('Y-m-d', $node_created) ?></li>
-        <li class="icon-heart"><?php print $bookmarksNum ?></li>
+        <li class="icon-heart"><?php print $praiseNum ?></li>
         <li class="icon-eye-open"><?php print $see_times ?></li>
         <li class="icon-comment"><?php print $comment_count ?></li>
       </ul>
@@ -158,6 +158,9 @@ $see_times=intval($variables['content']['links']['statistics']['#links']['statis
       </div>
     <? endif ?>
     <ul class="industry-news-share list-inline">
+      <li>
+        <?php print flag_create_link('praise',$nid)?>
+      </li>
       <li>
         <a
           href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php print $encodedURL ?>&title=<?php print $node_title ?>&pics=<?php print $encodedImg ?>&summary=<?php print $summary ?>"

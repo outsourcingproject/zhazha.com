@@ -8,11 +8,8 @@
 $v = $view->result[0];
 $nid = $v->nid;
 $flagarr = flag_get_counts('node', $v->nid);
-$bookmarksNum = 0;
 $praiseNum = 0;
 
-if (isset($flagarr['bookmarks']))
-    $bookmarksNum = $flagarr['bookmarks'];
 if (isset($flagarr['praise']))
     $praiseNum = $flagarr['praise'];
 ?>
@@ -27,7 +24,7 @@ if (isset($flagarr['praise']))
         <div class="curtain"></div>
         <p>
             <span><a href="<?php print '/' . drupal_get_path_alias('node/' . $nid) ?>"><?php echo $v->node_title; ?></a></span>
-            <span class="icon-heart"><?php echo $bookmarksNum; ?></span>
+            <span class="icon-heart"><?php echo $praiseNum; ?></span>
         </p>
     </div>
     <?php endforeach; ?>

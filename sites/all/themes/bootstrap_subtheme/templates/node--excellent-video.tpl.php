@@ -81,38 +81,34 @@
  */
 ?>
 <?php
-$nid = $content['field_image']['#object']->nid;
 $flagarr = flag_get_counts('node', $nid);
-$bookmarksNum = 0;
+$shareNum = 0;
 $praiseNum = 0;
 
-if (isset($flagarr['bookmarks'])) {
-  $bookmarksNum = $flagarr['bookmarks'];
+if (isset($flagarr['share'])) {
+  $shareNum = $flagarr['share'];
 }
 if (isset($flagarr['praise'])) {
   $praiseNum = $flagarr['praise'];
 }
-$uid = $content['field_image']['#object']->uid;
 $user = user_load($uid);
 
-$images = $content['field_image']['#object']->field_image['und'];
-
-$imagePath = file_create_url($images[0]['uri']);
+$imagePath = file_create_url($node->field_image['und'][0]['uri']);
 
 $encodedImg = urlencode($imagePath);
 
-$node_title = $content['field_image']['#object']->title;
+$node_title = $node->title;
 
-$node_created = $content['field_image']['#object']->created;
+$node_created = $node->created;
 
-$url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . (drupal_get_path_alias(current_path()));
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $node_url;
 $encodedURL = urlencode($url);
 
-$comment_count = $content['field_image']['#object']->comment_count;
+$comment_count = $node->comment_count;
 $see_times = intval($variables['content']['links']['statistics']['#links']['statistics_counter']['title']);
 
-if (isset($content['field_image']['#object']->field_video['und'][0]['uri'])) {
-  $videoURL = file_create_url($content['field_image']['#object']->field_video['und'][0]['uri']);
+if (isset($node->field_video['und'][0]['uri'])) {
+  $videoURL = file_create_url($node->field_video['und'][0]['uri']);
 }
 
 if (isset($node->body['und'][0]['value'])) {
@@ -122,11 +118,11 @@ if (isset($node->body['und'][0]['value'])) {
 $source = '';
 $info = '';
 
-if (isset($content['field_image']['#object']->field_source['und'][0]['value'])) {
-  $source = $content['field_image']['#object']->field_source['und'][0]['value'];
+if (isset($node->field_source['und'][0]['value'])) {
+  $source = $node->field_source['und'][0]['value'];
 }
-if (isset($content['field_image']['#object']->field_info['und'][0]['value'])) {
-  $info = $content['field_image']['#object']->field_info['und'][0]['value'];
+if (isset($node->field_info['und'][0]['value'])) {
+  $info = $node->field_info['und'][0]['value'];
 }
 
 $views = views_get_view('excellent_video');
@@ -178,7 +174,7 @@ $page_size=5;
     <div class="excellent-video-data item-padding-large">
       <ul class="list-unstyled list-inline">
         <li>播放: <?php print $see_times ?></li>
-        <li>赞: <?php print $bookmarksNum ?></li>
+        <li>赞: <?php print $praiseNum ?></li>
       </ul>
     </div>
 
@@ -202,17 +198,17 @@ $page_size=5;
                   <li class="excellent-video-item">
                     <?php
                     $v = $results[$j];
-                    $nid = $v->nid;
+                    $t_nid = $v->nid;
 
-                    $flagarr = flag_get_counts('node', $nid);
-                    $praiseNum = 0;
+                    $flagarr = flag_get_counts('node', $t_nid);
+                    $t_praiseNum = 0;
 
                     if (isset($flagarr['praise'])) {
-                      $praiseNum = $flagarr['praise'];
+                      $t_praiseNum = $flagarr['praise'];
                     }
                     ?>
                     <a
-                      href="<?php print '/' . drupal_get_path_alias('node/' . $nid) ?>">
+                      href="<?php print '/' . drupal_get_path_alias('node/' . $t_nid) ?>">
                       <img
                         src="<?php echo file_create_url($v->field_field_image[0]['raw']['uri']); ?>">
                     </a>
@@ -220,8 +216,8 @@ $page_size=5;
                     <div class="curtain"></div>
                     <p>
                     <span><a
-                        href="<?php print '/' . drupal_get_path_alias('node/' . $nid) ?>"><?php echo $v->node_title; ?></a></span>
-                      <span class="icon-heart"><?php echo $praiseNum; ?></span>
+                        href="<?php print '/' . drupal_get_path_alias('node/' . $t_nid) ?>"><?php echo $v->node_title; ?></a></span>
+                      <span class="icon-heart"><?php echo $t_praiseNum; ?></span>
                     </p>
                   </li>
                 <?php endfor ?>
@@ -247,6 +243,9 @@ $page_size=5;
     </div>
 
     <ul class="industry-news-share list-inline">
+      <li>
+        <?php print flag_create_link('praise',$nid)?>
+      </li>
       <li>
         <a
           href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?php print $encodedURL ?>&title=<?php print $node_title ?>&pics=<?php print $encodedImg ?>&summary= "
