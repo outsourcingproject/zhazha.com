@@ -212,44 +212,40 @@
  *   );
  * @endcode
  */
-$OPENSHIFT_MYSQL_DB_HOST=getenv('OPENSHIFT_MYSQL_DB_HOST');
-if(empty($OPENSHIFT_MYSQL_DB_HOST)){
+
+if (getenv('OPENSHIFT_APP_NAME') != "") {
+  $databases = array (
+    'default' => 
+    array (
+      'default' => 
+      array (
+        'database' => getenv('OPENSHIFT_APP_NAME'),
+        'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
+        'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
+        'host' => getenv('OPENSHIFT_MYSQL_DB_HOST'),
+        'port' => getenv('OPENSHIFT_MYSQL_DB_PORT'),
+        'driver' => 'mysql',
+        'prefix' => '',
+        ),
+      ),
+    );
+} else {
   $databases = array (
     'default' =>
+    array (
+      'default' =>
       array (
-        'default' =>
-          array (
-            'database' => 'zhazha',
-            'username' => 'root',
-            'password' => '888888',
-            'host' => 'localhost',
-            'port' => '3306',
-            'driver' => 'mysql',
-            'prefix' => '',
-          ),
+        'database' => 'zhazha',
+        'username' => 'root',
+        'password' => '888888',
+        'host' => 'localhost',
+        'port' => '3306',
+        'driver' => 'mysql',
+        'prefix' => '',
+        ),
       ),
-  );
-
+    );
 }
-else{
-  $databases = array (
-    'default' =>
-      array (
-        'default' =>
-          array (
-            'database' => 'zhazha',
-            'username' => getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
-            'password' => getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
-            'host' => getenv('OPENSHIFT_MYSQL_DB_HOST'),
-            'port' => getenv('OPENSHIFT_MYSQL_DB_PORT'),
-            'driver' => 'mysql',
-            'prefix' => '',
-          ),
-      ),
-  );
-
-}
-
 /**
  * Access control for update.php script.
  *
